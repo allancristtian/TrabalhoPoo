@@ -1,5 +1,4 @@
 
-package usuarios;
 
 public class Usuario {
     private int id;
