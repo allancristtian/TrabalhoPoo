@@ -7,9 +7,8 @@ public class Produto {
     private String descricao;
     private int quantidade;
     private double preco;
-    private List<Movimentacao> movimentacoes; 
+    private List<Movimentacao> movimentacoes;
 
-    
     public Produto(int id, String nome, String descricao, int quantidade, double preco) {
         this.id = id;
         this.nome = nome;
@@ -19,7 +18,6 @@ public class Produto {
         this.movimentacoes = new ArrayList<>();
     }
 
-    
     public int getId() {
         return id;
     }
@@ -44,23 +42,22 @@ public class Produto {
         return movimentacoes;
     }
 
-    
     public void adicionarMovimentacao(Movimentacao movimentacao) {
         this.movimentacoes.add(movimentacao);
     }
 
-    
     public void adicionarQuantidade(int quantidade) {
+        int quantidadeAnterior = this.quantidade; 
         this.quantidade += quantidade;
-        
-        movimentacoes.add(new Movimentacao("entrada", quantidade)); 
+        movimentacoes.add(new Movimentacao("entrada", quantidade, quantidadeAnterior)); 
     }
 
     public void removerQuantidade(int quantidade) {
         if (quantidade > this.quantidade) {
             throw new IllegalArgumentException("Quantidade insuficiente no estoque.");
         }
+        int quantidadeAnterior = this.quantidade;
         this.quantidade -= quantidade;
-        movimentacoes.add(new Movimentacao("saida", quantidade)); 
+        movimentacoes.add(new Movimentacao("saida", quantidade, quantidadeAnterior)); 
     }
 }
