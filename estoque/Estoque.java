@@ -91,6 +91,14 @@ public class Estoque {
             } else {
                 System.out.println();
             }
+            if (p.getMovimentacoes().isEmpty()) {
+                System.out.println("Sem movimentações registradas.");
+            } else {
+                System.out.println("Movimentações: ");
+                for (Movimentacao m : p.getMovimentacoes()) {
+                    System.out.println(m); 
+                }
+            }
         }
     }
 }      
