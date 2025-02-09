@@ -1,5 +1,3 @@
-package estoque;
-
 public class Produto {
     private int id;
     private String nome;
@@ -8,6 +6,14 @@ public class Produto {
     private double preco;
 
     public Produto(int id, String nome, String descricao, int quantidade, double preco) {
+        
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
+        if (preco < 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo.");
+        }
+
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -15,16 +21,63 @@ public class Produto {
         this.preco = preco;
     }
 
-    // Getters e Setters
+    
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setQuantidade(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
+        this.quantidade = quantidade;
+    }
+
+    public void setPreco(double preco) {
+        if (preco < 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo.");
+        }
+        this.preco = preco;
+    }
+
     public void adicionarQuantidade(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
         this.quantidade += quantidade;
     }
 
     public void removerQuantidade(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+        }
+        if (this.quantidade - quantidade < 0) {
+            throw new IllegalArgumentException("Estoque insuficiente, impossível realizar operação.");
+        }
         this.quantidade -= quantidade;
     }
 
-    public boolean verificarEstoqueMinimo(int minimo) {
-        return this.quantidade < minimo;
-    }
+    @Override
+    public String toString() {
+        return String.format(
+            "Produto { ID: %d, Nome: '%s', Descrição: '%s', Quantidade: %d, Preço: %.2f }",
+            id, nome, descricao, quantidade, preco
+        );
+    }    
 }
