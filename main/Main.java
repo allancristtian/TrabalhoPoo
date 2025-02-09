@@ -40,7 +40,7 @@ public class Main {
             switch (opcao) {
                 case 1:
                     int id = 0;
-                    boolean idValido = false;
+                    boolean idValido = false; 
 
                     while (!idValido) {
                         try {
