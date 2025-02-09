@@ -78,19 +78,16 @@ public class Estoque {
             System.out.println("Nenhum produto cadastrado.");
             return;
         }
-
+    
         System.out.println("\n=== RELATÓRIO DE PRODUTOS ===");
         for (Produto p : produtos) {
-            
-            System.out.printf("Produto { ID: %d, Nome: '%s', Descrição: '%s', Quantidade: %d, Preço: %.2f }", 
+            System.out.printf("Produto { ID: %d, Nome: '%s', Descrição: '%s', Quantidade: %d, Preço: %.2f }\n",
                               p.getId(), p.getNome(), p.getDescricao(), p.getQuantidade(), p.getPreco());
-
-            
+    
             if (p.getQuantidade() < nivelMinimo) {
-                System.out.println(" ALERTA: Estoque abaixo do nível mínimo!");
-            } else {
-                System.out.println();
+                System.out.println("ALERTA: Estoque abaixo do nível mínimo!");
             }
+    
             if (p.getMovimentacoes().isEmpty()) {
                 System.out.println("Sem movimentações registradas.");
             } else {
@@ -100,7 +97,7 @@ public class Estoque {
                 }
             }
         }
-    }
+    }    
 }      
 
     
