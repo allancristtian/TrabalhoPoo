@@ -10,7 +10,7 @@ public class Main {
         scanner.nextLine();
 
         while (true) {
-            System.out.println("\n=== MENU ===");
+            System.out.println("\n-- MENU --");
             System.out.println("1 - Adicionar Produto");
             System.out.println("2 - Remover Produto");
             System.out.println("3 - Remover Quantidade de um Produto");

@@ -17,4 +17,20 @@ public class Usuario {
     }
 
     // Getters e Setters
+    public void getId(int id){
+        this.id = id;
+    }
+    public void getNome(String nome){
+        this.nome = nome;
+    }
+    public void getLogin(String login){
+        this.login = login;
+    }
+    public void getSenha(String senha){
+        this.senha = senha;
+    }
+    public void getPermissao(String permissao){
+        this.permissao = permissao;
+    }
+
 }
