@@ -18,6 +18,9 @@ public class Produto {
         this.movimentacoes = new ArrayList<>();
     }
 
+    public Produto(int id, String nome, double preco) {
+    }
+
     public int getId() {
         return id;
     }

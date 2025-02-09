@@ -3,7 +3,7 @@ import java.util.List;
 
 
 class SistemaVendas {
-    private List<Pedido> pedidos;
+    public List<Pedido> pedidos;
 
     public SistemaVendas() {
         this.pedidos = new ArrayList<>();
