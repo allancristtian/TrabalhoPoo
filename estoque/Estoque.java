@@ -73,22 +73,26 @@ public class Estoque {
         System.out.println("Produto não encontrado.");
     }
 
-    public void verificarEstoqueMinimo(int minimo) {
-        for (Produto p : produtos) {
-            if (p.getQuantidade() < minimo) {
-                System.out.println("Alerta: Produto " + p.getNome() + " está abaixo do estoque mínimo!");
-            }
+    public void gerarRelatorio(int nivelMinimo) {
+        if (produtos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado.");
+            return;
         }
-    }
 
-    public void gerarRelatorio(int minimo) {
-        System.out.println("\n--- Relatório de Estoque (Estoque abaixo de " + minimo + " unidades) ---");
+        System.out.println("\n=== RELATÓRIO DE PRODUTOS ===");
         for (Produto p : produtos) {
-            if (p.getQuantidade() < minimo) {
-                System.out.println(p); 
+            
+            System.out.printf("Produto { ID: %d, Nome: '%s', Descrição: '%s', Quantidade: %d, Preço: %.2f }", 
+                              p.getId(), p.getNome(), p.getDescricao(), p.getQuantidade(), p.getPreco());
+
+            
+            if (p.getQuantidade() < nivelMinimo) {
+                System.out.println(" ALERTA: Estoque abaixo do nível mínimo!");
+            } else {
+                System.out.println();
             }
         }
     }
-}
+}      
 
     
