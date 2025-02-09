@@ -1,24 +1,35 @@
-class Pedido {
-    private Produto produto;
-    private int quantidade;
-    private double subtotal;
+import java.util.*;
 
-    public ItemPedido(Produto produto, int quantidade) {
-        if (quantidade > produto.getQuantidade()) {
-            throw new IllegalArgumentException("Estoque insuficiente para o produto " + produto.getNome());
-        }
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.subtotal = quantidade * produto.getPreco();
-        produto.removerQuantidade(quantidade);
+class Pedido {
+    private int id;
+    private Cliente cliente;
+    private List<Produto> produtos;
+    private double total;
+
+    public Pedido(int id, Cliente cliente) {
+        this.id = id;
+        this.cliente = cliente;
+        this.produtos = new ArrayList<>();
+        this.total = 0;
     }
 
-    public double getSubtotal() {
-        return subtotal;
+    public void adicionarProduto(Produto produto) {
+        produtos.add(produto);
+        total += produto.getPreco();
+    }
+
+    public double getTotal() { 
+        return total; 
+    }
+    public Cliente getCliente() { 
+        return cliente; 
+    }
+    public List<Produto> getProdutos() { 
+        return produtos; 
     }
 
     @Override
     public String toString() {
-        return String.format("Produto: %s, Quantidade: %d, Subtotal: %.2f", produto.getNome(), quantidade, subtotal);
+        return "Pedido ID: " + id + ", Cliente: " + cliente.getNome() + ", Total: R$ " + total;
     }
 }
