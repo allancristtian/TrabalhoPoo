@@ -71,13 +71,5 @@ public class Produto {
             throw new IllegalArgumentException("Estoque insuficiente, impossível realizar operação.");
         }
         this.quantidade -= quantidade;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-            "Produto { ID: %d, Nome: '%s', Descrição: '%s', Quantidade: %d, Preço: %.2f }",
-            id, nome, descricao, quantidade, preco
-        );
-    }    
+    }   
 }
