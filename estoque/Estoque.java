@@ -7,7 +7,9 @@ public class Estoque {
     public Estoque() {
         this.produtos = new ArrayList<>();
     }
-
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
     public void adicionarProduto(Produto produto) {
         if (produto.getQuantidade() < 0 || produto.getPreco() < 0) {
             throw new IllegalArgumentException("Não é permitido adicionar produtos com valores negativos.");
