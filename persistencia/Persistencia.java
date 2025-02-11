@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persistencia{
+public class GerenciadorProdutos{
   private static final String ARQUIVO_PRODUTOS = "produtos.ser";
 
 public static void salvarProdutos(List<Produto> produtos){
