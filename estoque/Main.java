@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +11,9 @@ public class Main {
         System.out.print("Defina o nível mínimo de estoque: ");
         int nivelMinimo = scanner.nextInt();
         scanner.nextLine();
- 
+
+        carregarDados(estoque, clientes, pedidos);
+
         while (true) {
             System.out.println("\n=== MENU ===");
             System.out.println("1 - Adicionar Produto");
@@ -211,6 +214,7 @@ public class Main {
 
                 case 10:
                     System.out.println("Encerrando o programa...");
+                    salvarDados(estoque, clientes, pedidos);
                     scanner.close();
                     return;
 
@@ -219,4 +223,47 @@ public class Main {
             }
         }
     }
-}
+       private static void carregarDados(Estoque estoque, List<Cliente> clientes, List<Pedido> pedidos) {
+            String dadosEstoque = Persistencia.carregarDados("estoque.txt");
+            if (!dadosEstoque.isEmpty()) {
+                for (String linha : dadosEstoque.split("\n")) {
+                    estoque.adicionarProduto(Produto.fromString(linha));
+                }
+            }
+
+            String dadosClientes = Persistencia.carregarDados("clientes.txt");
+            if (!dadosClientes.isEmpty()) {
+                for (String linha : dadosClientes.split("\n")) {
+                    clientes.add(Cliente.fromString(linha));
+                }
+            }
+
+            String dadosPedidos = Persistencia.carregarDados("pedidos.txt");
+            if (!dadosPedidos.isEmpty()) {
+                for (String linha : dadosPedidos.split("\n")) {
+                    pedidos.add(Pedido.fromString(linha, clientes, estoque));
+                }
+            }
+        }
+
+        private static void salvarDados(Estoque estoque, List<Cliente> clientes, List<Pedido> pedidos) {
+            StringBuilder sbEstoque = new StringBuilder();
+            for (Produto produto : estoque.getProdutos()) {
+                sbEstoque.append(produto.toString()).append("\n");
+            }
+            Persistencia.salvarDados("estoque.txt", sbEstoque.toString());
+
+            StringBuilder sbClientes = new StringBuilder();
+            for (Cliente cliente : clientes) {
+                sbClientes.append(cliente.toString()).append("\n");
+            }
+            Persistencia.salvarDados("clientes.txt", sbClientes.toString());
+
+            StringBuilder sbPedidos = new StringBuilder();
+            for (Pedido pedido : pedidos) {
+                sbPedidos.append(pedido.toString()).append("\n");
+            }
+            Persistencia.salvarDados("pedidos.txt", sbPedidos.toString());
+        }
+    }
+
