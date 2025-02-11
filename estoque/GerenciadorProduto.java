@@ -1,4 +1,4 @@
-package persistencia;
+package estoque;
 
 import estoque.Produto;
 import java.io.*;
