@@ -64,4 +64,14 @@ public class Produto implements Serializable {
         this.quantidade -= quantidade;
         movimentacoes.add(new Movimentacao("saida", quantidade, quantidadeAnterior)); 
     }
+
+    public static Produto fromString(String linha) {
+        String[] partes = linha.split(";");
+        int id = Integer.parseInt(partes[0]);
+        String nome = partes[1];
+        String descricao = partes[2];
+        int quantidade = Integer.parseInt(partes[3]);
+        double preco = Double.parseDouble(partes[4]);
+        return new Produto(id, nome, descricao, quantidade, preco);
+    }
 }
