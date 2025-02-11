@@ -1,6 +1,4 @@
-import java.io.Serializble;
-
-public class Cliente implements Serializable {
+public class Cliente{
     private int id;
     private String nome;
     private String endereco;
